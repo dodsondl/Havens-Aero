@@ -13,6 +13,8 @@
 		2AA6283822546A41007FF5BA /* Havens_Aero.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2AA6283622546A41007FF5BA /* Havens_Aero.xcdatamodeld */; };
 		2AA6283A22546A46007FF5BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6283922546A46007FF5BA /* Assets.xcassets */; };
 		2AA6283D22546A46007FF5BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6283B22546A46007FF5BA /* LaunchScreen.storyboard */; };
+		2AA6284522547965007FF5BA /* popUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA6284422547965007FF5BA /* popUpVC.swift */; };
+		35C490DA35B4BC3498156DFA /* Pods_Havens_Aero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B65E85CA2F40DB742409FDCA /* Pods_Havens_Aero.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,10 @@
 		2AA6283922546A46007FF5BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AA6283C22546A46007FF5BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2AA6283E22546A46007FF5BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2AA6284422547965007FF5BA /* popUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popUpVC.swift; sourceTree = "<group>"; };
+		B0A869E4828E3F26ED40F4C6 /* Pods-Havens Aero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Havens Aero.release.xcconfig"; path = "Pods/Target Support Files/Pods-Havens Aero/Pods-Havens Aero.release.xcconfig"; sourceTree = "<group>"; };
+		B65E85CA2F40DB742409FDCA /* Pods_Havens_Aero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Havens_Aero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9267865C609EBEAE16BB0B1 /* Pods-Havens Aero.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Havens Aero.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Havens Aero/Pods-Havens Aero.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +37,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35C490DA35B4BC3498156DFA /* Pods_Havens_Aero.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24A53837C3061DE3C5A5747D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B65E85CA2F40DB742409FDCA /* Pods_Havens_Aero.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2AA6282322546A41007FF5BA = {
 			isa = PBXGroup;
 			children = (
 				2AA6282E22546A41007FF5BA /* Havens Aero */,
 				2AA6282D22546A41007FF5BA /* Products */,
+				519DA97D27DCE65070928242 /* Pods */,
+				24A53837C3061DE3C5A5747D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,8 +80,18 @@
 				2AA6283B22546A46007FF5BA /* LaunchScreen.storyboard */,
 				2AA6283E22546A46007FF5BA /* Info.plist */,
 				2AA6283622546A41007FF5BA /* Havens_Aero.xcdatamodeld */,
+				2AA6284422547965007FF5BA /* popUpVC.swift */,
 			);
 			path = "Havens Aero";
+			sourceTree = "<group>";
+		};
+		519DA97D27DCE65070928242 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F9267865C609EBEAE16BB0B1 /* Pods-Havens Aero.debug.xcconfig */,
+				B0A869E4828E3F26ED40F4C6 /* Pods-Havens Aero.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2AA6284122546A46007FF5BA /* Build configuration list for PBXNativeTarget "Havens Aero" */;
 			buildPhases = (
+				C23516DC9387B3E40FF17924 /* [CP] Check Pods Manifest.lock */,
 				2AA6282822546A41007FF5BA /* Sources */,
 				2AA6282922546A41007FF5BA /* Frameworks */,
 				2AA6282A22546A41007FF5BA /* Resources */,
+				38F4CC249D439D6FCB02DE4B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,12 +162,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		38F4CC249D439D6FCB02DE4B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Havens Aero/Pods-Havens Aero-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/TextFieldEffects/TextFieldEffects.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TextFieldEffects.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Havens Aero/Pods-Havens Aero-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C23516DC9387B3E40FF17924 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Havens Aero-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2AA6282822546A41007FF5BA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				2AA6283222546A41007FF5BA /* initialVC.swift in Sources */,
+				2AA6284522547965007FF5BA /* popUpVC.swift in Sources */,
 				2AA6283822546A41007FF5BA /* Havens_Aero.xcdatamodeld in Sources */,
 				2AA6283022546A41007FF5BA /* AppDelegate.swift in Sources */,
 			);
@@ -284,6 +361,7 @@
 		};
 		2AA6284222546A46007FF5BA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9267865C609EBEAE16BB0B1 /* Pods-Havens Aero.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -302,6 +380,7 @@
 		};
 		2AA6284322546A46007FF5BA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0A869E4828E3F26ED40F4C6 /* Pods-Havens Aero.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -53,12 +54,114 @@
                     <navigationItem key="navigationItem" title="Havens Aero" id="yjy-Rp-p6B">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="T6I-YK-Mkz">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="addNewClicked:" destination="fT4-Q2-YpE" id="AQc-Q1-dga"/>
+                                <segue destination="3ut-K4-u7v" kind="presentation" modalPresentationStyle="overCurrentContext" id="VVb-9a-iaN"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NUp-Ul-7er" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1863.2" y="127.83251231527095"/>
+        </scene>
+        <!--Pop UpVC-->
+        <scene sceneID="heT-4b-l13">
+            <objects>
+                <viewController id="3ut-K4-u7v" customClass="popUpVC" customModule="Havens_Aero" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y5n-f4-peu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QqM-o1-YhC" userLabel="popUpView">
+                                <rect key="frame" x="37.666666666666657" y="231" width="300" height="350"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thX-GG-sRG">
+                                        <rect key="frame" x="13" y="285" width="273" height="50"/>
+                                        <color key="backgroundColor" red="0.098039215686274508" green="0.1803921568627451" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="IFu-yW-YGo"/>
+                                            <constraint firstAttribute="width" constant="273" id="fpv-fs-SDI"/>
+                                        </constraints>
+                                        <state key="normal" title="Create New Trip">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="popUpButtonClicked:" destination="3ut-K4-u7v" eventType="touchUpInside" id="F2U-lt-ETm"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Flight Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9V2-Q7-8jA" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="42" y="155" width="215" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="215" id="2Zh-7Y-NFq"/>
+                                            <constraint firstAttribute="height" constant="50" id="iLp-TT-CY3"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Plane Tail Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D60-eo-JUe" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="42" y="80" width="215" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="0lO-Nz-x7T"/>
+                                            <constraint firstAttribute="width" constant="215" id="ScZ-RX-rb7"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="thX-GG-sRG" secondAttribute="trailing" constant="14" id="Cvr-SK-v4I"/>
+                                    <constraint firstItem="9V2-Q7-8jA" firstAttribute="leading" secondItem="QqM-o1-YhC" secondAttribute="leading" constant="42" id="HF5-0Q-hoh"/>
+                                    <constraint firstItem="D60-eo-JUe" firstAttribute="leading" secondItem="QqM-o1-YhC" secondAttribute="leading" constant="42" id="HNl-ni-uIR"/>
+                                    <constraint firstAttribute="trailing" secondItem="9V2-Q7-8jA" secondAttribute="trailing" constant="43" id="KPK-zP-Xcb"/>
+                                    <constraint firstItem="9V2-Q7-8jA" firstAttribute="top" secondItem="D60-eo-JUe" secondAttribute="bottom" constant="25" id="SgA-72-0H4"/>
+                                    <constraint firstAttribute="width" constant="300" id="YR6-pV-SDb"/>
+                                    <constraint firstItem="D60-eo-JUe" firstAttribute="top" secondItem="QqM-o1-YhC" secondAttribute="top" constant="80" id="aEO-k3-uSR"/>
+                                    <constraint firstAttribute="trailing" secondItem="D60-eo-JUe" secondAttribute="trailing" constant="43" id="eN1-96-ry1"/>
+                                    <constraint firstItem="thX-GG-sRG" firstAttribute="top" secondItem="9V2-Q7-8jA" secondAttribute="bottom" constant="80" id="g1j-jF-orC"/>
+                                    <constraint firstAttribute="height" constant="350" id="gc5-Wg-cwc"/>
+                                    <constraint firstAttribute="bottom" secondItem="thX-GG-sRG" secondAttribute="bottom" constant="15" id="klz-Lx-wdB"/>
+                                    <constraint firstItem="thX-GG-sRG" firstAttribute="leading" secondItem="QqM-o1-YhC" secondAttribute="leading" constant="13" id="n3H-FC-moJ"/>
+                                    <constraint firstItem="9V2-Q7-8jA" firstAttribute="top" secondItem="D60-eo-JUe" secondAttribute="bottom" constant="25" id="o5i-Ee-pBr"/>
+                                    <constraint firstItem="thX-GG-sRG" firstAttribute="top" secondItem="9V2-Q7-8jA" secondAttribute="bottom" constant="80" id="qQu-v7-QUB"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="QqM-o1-YhC" firstAttribute="centerY" secondItem="Y5n-f4-peu" secondAttribute="centerY" id="Zen-ZV-MVc"/>
+                            <constraint firstItem="QqM-o1-YhC" firstAttribute="centerX" secondItem="Y5n-f4-peu" secondAttribute="centerX" id="aC4-jp-SwF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hv4-hb-UoT"/>
+                    </view>
+                    <connections>
+                        <outlet property="flightDateTextField" destination="9V2-Q7-8jA" id="pO9-Up-X3a"/>
+                        <outlet property="popUpButton" destination="thX-GG-sRG" id="wkV-Rb-jnV"/>
+                        <outlet property="popUpView" destination="QqM-o1-YhC" id="gJG-ym-YNa"/>
+                        <outlet property="tailNumberTextField" destination="D60-eo-JUe" id="Qd6-V4-Wau"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wUI-mU-dNw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2412" y="-560.83743842364538"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Blj-0b-BTo">

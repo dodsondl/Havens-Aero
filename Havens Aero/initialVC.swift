@@ -7,11 +7,19 @@
 //
 
 import UIKit
+import CoreData
 
 class intialVC: UITableViewController {
-
+    
+    
+    
+    
+    
     let itemArray = ["one", "two", "three", "four"]
     let itemArrayz = ["1","2","3","4"]
+    
+    
+    
     
     
     override func viewDidLoad() {
@@ -20,9 +28,18 @@ class intialVC: UITableViewController {
     }
     
     
+    
+    
+    
+    //MARK: tableview datasource
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemArrayz.count
     }
+    
+    
+    
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -35,9 +52,26 @@ class intialVC: UITableViewController {
         
     }
     
+    
+    
+    
+    
+    //MARK: tableview did select row at
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    
+    
+    
+    
+    //MARK: add new item
+    
+    @IBAction func addNewClicked(_ sender: Any) {
+    }
+    
+    
    
 
 
