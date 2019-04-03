@@ -75,12 +75,12 @@
 			children = (
 				2AA6282F22546A41007FF5BA /* AppDelegate.swift */,
 				2AA6283122546A41007FF5BA /* initialVC.swift */,
+				2AA6284422547965007FF5BA /* popUpVC.swift */,
 				2AA6283322546A41007FF5BA /* Main.storyboard */,
 				2AA6283922546A46007FF5BA /* Assets.xcassets */,
 				2AA6283B22546A46007FF5BA /* LaunchScreen.storyboard */,
 				2AA6283E22546A46007FF5BA /* Info.plist */,
 				2AA6283622546A41007FF5BA /* Havens_Aero.xcdatamodeld */,
-				2AA6284422547965007FF5BA /* popUpVC.swift */,
 			);
 			path = "Havens Aero";
 			sourceTree = "<group>";

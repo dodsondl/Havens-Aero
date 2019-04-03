@@ -53,10 +53,10 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Havens Aero" id="yjy-Rp-p6B">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="T6I-YK-Mkz">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" red="0.94901960784313721" green="0.72941176470588232" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="addNewClicked:" destination="fT4-Q2-YpE" id="AQc-Q1-dga"/>
-                                <segue destination="3ut-K4-u7v" kind="presentation" modalPresentationStyle="overCurrentContext" id="VVb-9a-iaN"/>
+                                <segue destination="3ut-K4-u7v" kind="presentation" identifier="popUpSegue" modalPresentationStyle="overCurrentContext" id="VVb-9a-iaN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -78,13 +78,13 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thX-GG-sRG">
                                         <rect key="frame" x="13" y="285" width="273" height="50"/>
-                                        <color key="backgroundColor" red="0.098039215686274508" green="0.1803921568627451" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.94901960780000005" green="0.72941176470000002" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="IFu-yW-YGo"/>
                                             <constraint firstAttribute="width" constant="273" id="fpv-fs-SDI"/>
                                         </constraints>
                                         <state key="normal" title="Create New Trip">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="popUpButtonClicked:" destination="3ut-K4-u7v" eventType="touchUpInside" id="F2U-lt-ETm"/>
@@ -104,7 +104,7 @@
                                                 <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" red="0.098039215686274508" green="0.1803921568627451" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
@@ -122,10 +122,32 @@
                                                 <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" red="0.098039215686274508" green="0.1803921568627451" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pHG-ae-lEe">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="59"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l61-ey-Iac">
+                                                <rect key="frame" x="15" y="21" width="16" height="16"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button" image="whiteCancelButton"/>
+                                                <connections>
+                                                    <action selector="exitPopUpButton:" destination="3ut-K4-u7v" eventType="touchUpInside" id="DVh-WK-8wN"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Flight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dld-6P-qs0">
+                                                <rect key="frame" x="109" y="19" width="82" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.098039215686274508" green="0.1803921568627451" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -157,6 +179,7 @@
                         <outlet property="popUpButton" destination="thX-GG-sRG" id="wkV-Rb-jnV"/>
                         <outlet property="popUpView" destination="QqM-o1-YhC" id="gJG-ym-YNa"/>
                         <outlet property="tailNumberTextField" destination="D60-eo-JUe" id="Qd6-V4-Wau"/>
+                        <outlet property="topColorView" destination="pHG-ae-lEe" id="MrO-hM-lBa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wUI-mU-dNw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -168,12 +191,17 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WiD-Xv-l7Y" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="tZB-HY-owV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="tZB-HY-owV">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.098039215686274508" green="0.11372549019607843" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.098039215690000001" green="0.18039215689999999" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.098039215686274508" green="0.11372549019607843" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                     </navigationBar>
@@ -187,4 +215,7 @@
             <point key="canvasLocation" x="920.79999999999995" y="127.83251231527095"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="whiteCancelButton" width="384" height="384"/>
+    </resources>
 </document>
