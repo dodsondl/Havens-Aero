@@ -19,6 +19,9 @@ class intialVC: UITableViewController {
    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
      var flightArray = [Flight]()
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+   
     
     
     
@@ -28,6 +31,13 @@ class intialVC: UITableViewController {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleModalDismissed), name: NSNotification.Name(rawValue: "modalIsDimissed"), object: nil)
         loadFlights()
+        searchBarColor()
+        
+        
+      
+        
+        
+        
     }
     
     
@@ -68,11 +78,11 @@ class intialVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "initialCell", for: indexPath)
-        cell.textLabel?.text = flightArray[indexPath.row].tailNumber
+        cell.textLabel?.text = flightArray.reversed()[indexPath.row].tailNumber
         cell.textLabel?.textColor = UIColor.white
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yy"
-        let dateString = formatter.string(from: flightArray[indexPath.row].flightDate!)
+        let dateString = formatter.string(from: flightArray.reversed()[indexPath.row].flightDate!)
         cell.detailTextLabel?.text = dateString
         cell.detailTextLabel?.textColor = UIColor.white
         return cell
@@ -82,11 +92,27 @@ class intialVC: UITableViewController {
     
     
     
+    //MARK: searchBar color
+    
+    func searchBarColor() {
+        if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
+            textfield.textColor = UIColor.blue
+            textfield.backgroundColor = UIColor.darkGray
+        }
+    }
+    
+  
+    
+    
+    
+    
     
     //MARK: tableview did select row at
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        
     }
     
     
