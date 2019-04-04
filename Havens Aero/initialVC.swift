@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class intialVC: UITableViewController {
+class intialVC: UITableViewController, UISearchBarDelegate {
     
     
     
@@ -67,7 +67,10 @@ class intialVC: UITableViewController {
     //MARK: tableview datasource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+     
         return flightArray.count
+        
     }
     
     
@@ -96,11 +99,33 @@ class intialVC: UITableViewController {
     
     func searchBarColor() {
         if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
-            textfield.textColor = UIColor.blue
+            textfield.textColor = UIColor.white
             textfield.backgroundColor = UIColor.darkGray
         }
     }
     
+    
+    //MARK: delete trip
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = deleteAction(at: indexPath)
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
+    
+    
+    func deleteAction(at indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
+             self.context.delete(self.flightArray[indexPath.row])
+            self.flightArray.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            completion(true)
+            self.saveFlight()
+        }
+       // action.image = UIImage(named: "trashCan")
+        action.backgroundColor = .red
+     
+        return action
+    }
   
     
     
@@ -132,9 +157,8 @@ class intialVC: UITableViewController {
     
     //MARK: load Flights
 
-    func loadFlights() {
+    func loadFlights(with request: NSFetchRequest<Flight> = Flight.fetchRequest()) {
         
-        let request: NSFetchRequest<Flight> = Flight.fetchRequest()
         do {
         flightArray = try context.fetch(request)
         } catch {
@@ -142,6 +166,55 @@ class intialVC: UITableViewController {
         }
         
         tableView.reloadData()
+    }
+    
+    
+    
+    
+    //MARK: save flight
+    
+    func saveFlight() {
+        
+        do {
+            try context.save()
+        } catch {
+            print("error saving context")
+        }
+    }
+    
+    
+    
+    
+    //MARK: searh barsearch button clicked
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        let request: NSFetchRequest<Flight> = Flight.fetchRequest()
+         request.predicate = NSPredicate(format: "tailNumber CONTAINS[cd] %@", searchBar.text!)
+        request.sortDescriptors = [NSSortDescriptor(key: "tailNumber", ascending: true)]
+        
+        loadFlights(with: request)
+    }
+    
+    
+    
+    
+    //MARK: search bar text did change
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loadFlights()
+            DispatchQueue.main.async {
+                 searchBar.resignFirstResponder()
+            }
+        }
+        else {
+            let request: NSFetchRequest<Flight> = Flight.fetchRequest()
+            request.predicate = NSPredicate(format: "tailNumber CONTAINS[cd] %@", searchBar.text!)
+            request.sortDescriptors = [NSSortDescriptor(key: "tailNumber", ascending: true)]
+            
+            loadFlights(with: request)
+        }
     }
     
     

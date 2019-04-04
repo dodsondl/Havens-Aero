@@ -22,10 +22,13 @@
                         <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" translucent="NO" id="tha-jL-KR2">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <color key="tintColor" red="0.94901960780000005" green="0.72941176470000002" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <color key="barTintColor" red="0.098039215686274508" green="0.11372549019607843" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="fT4-Q2-YpE" id="wPo-vp-Yna"/>
+                            </connections>
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="initialCell" textLabel="8nm-Il-rlV" detailTextLabel="m0U-gk-sbp" style="IBUITableViewCellStyleValue1" id="Tsl-rV-5Bb">
