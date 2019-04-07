@@ -34,7 +34,7 @@ class intialVC: UITableViewController, UISearchBarDelegate {
         searchBarColor()
         
         
-      
+      self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         
         
@@ -81,11 +81,11 @@ class intialVC: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "initialCell", for: indexPath)
-        cell.textLabel?.text = flightArray.reversed()[indexPath.row].tailNumber
+        cell.textLabel?.text = flightArray[indexPath.row].tailNumber
         cell.textLabel?.textColor = UIColor.white
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yy"
-        let dateString = formatter.string(from: flightArray.reversed()[indexPath.row].flightDate!)
+        let dateString = formatter.string(from: flightArray[indexPath.row].flightDate!)
         cell.detailTextLabel?.text = dateString
         cell.detailTextLabel?.textColor = UIColor.white
         return cell
@@ -109,6 +109,7 @@ class intialVC: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = deleteAction(at: indexPath)
+        tableView.reloadData()
         return UISwipeActionsConfiguration(actions: [delete])
     }
     
@@ -119,12 +120,15 @@ class intialVC: UITableViewController, UISearchBarDelegate {
             self.flightArray.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             completion(true)
-            self.saveFlight()
+           
         }
        // action.image = UIImage(named: "trashCan")
         action.backgroundColor = .red
+        self.saveFlight()
      
         return action
+        
+        
     }
   
     
@@ -135,9 +139,24 @@ class intialVC: UITableViewController, UISearchBarDelegate {
     //MARK: tableview did select row at
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         
         
+        performSegue(withIdentifier: "goToFlight", sender: self)
+        //print(flightArray[indexPath.row])
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       
+        
+        if segue.identifier == "goToFlight" {
+        
+        let destinationVC = segue.destination as! individualFlightVC
+            
+            
+        if let indxPath = self.tableView.indexPathForSelectedRow {
+            destinationVC.selectedFlight = flightArray[indxPath.row]
+        }
+        }
     }
     
     
