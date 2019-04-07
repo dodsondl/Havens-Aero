@@ -2,15 +2,19 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Flight" representedClassName=".Flight" syncable="YES" codeGenerationType="class">
         <attribute name="flightDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="fuelAdded" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fuelStart" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hobbsIn" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hobbsOut" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="oilAdded" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="oilStart" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stepperNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tachIn" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tachOut" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tailNumber" attributeType="String" syncable="YES"/>
-        <relationship name="info" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Info" inverseName="parentCategory" inverseEntity="Info" syncable="YES"/>
-    </entity>
-    <entity name="Info" representedClassName="Info" syncable="YES" codeGenerationType="class">
-        <attribute name="time" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="parentCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Flight" inverseName="info" inverseEntity="Flight" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Flight" positionX="-419.796875" positionY="14.9375" width="128" height="88"/>
-        <element name="Info" positionX="-249.08984375" positionY="7.30859375" width="128" height="73"/>
+        <element name="Flight" positionX="-419.796875" positionY="14.9375" width="128" height="223"/>
     </elements>
 </model>

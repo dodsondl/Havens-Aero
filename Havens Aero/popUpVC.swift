@@ -82,6 +82,7 @@ class popUpVC: UIViewController {
         
         flightDateTextField.inputAccessoryView = toolbar
         flightDateTextField.inputView = datePicker
+        flightDateTextField.keyboardAppearance = UIKeyboardAppearance.dark
     }
     
     
