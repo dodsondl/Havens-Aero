@@ -12,6 +12,7 @@ import CoreData
 class intialVC: UITableViewController, UISearchBarDelegate {
     
     
+    @IBOutlet weak var label: UILabel!
     
     
     //MARK: Variables
@@ -88,6 +89,7 @@ class intialVC: UITableViewController, UISearchBarDelegate {
         let dateString = formatter.string(from: flightArray[indexPath.row].flightDate!)
         cell.detailTextLabel?.text = dateString
         cell.detailTextLabel?.textColor = UIColor.white
+        
         return cell
         
     }

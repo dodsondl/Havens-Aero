@@ -49,7 +49,7 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
                 textViewNotes.text = selectedFlight?.notes
                 textViewNotes.textColor = UIColor.white
             } else {
-                textViewNotes.text = "Notes..."
+                textViewNotes.text = "Add Notes..."
                 textViewNotes.textColor = UIColor.lightGray
             }
             
@@ -57,7 +57,7 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
                 hobbsIn.text = selectedFlight?.hobbsIn
                 hobbsIn.textColor = UIColor.white
             } else {
-                hobbsIn.text = "In..."
+                hobbsIn.text = "Add Time..."
                 hobbsIn.textColor = UIColor.lightGray
             }
             
@@ -65,7 +65,7 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
                 hobbsOut.text = selectedFlight?.hobbsOut
                 hobbsOut.textColor = UIColor.white
             } else {
-                hobbsOut.text = "Out..."
+                hobbsOut.text = "Add Time..."
                 hobbsOut.textColor = UIColor.lightGray
             }
             
@@ -73,7 +73,7 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
                 tachIn.text = selectedFlight?.tachIn
                 tachIn.textColor = UIColor.white
             } else {
-                tachIn.text = "In..."
+                tachIn.text = "Add Time..."
                 tachIn.textColor = UIColor.lightGray
             }
             
@@ -81,7 +81,7 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
                 tachOut.text = selectedFlight?.tachOut
                 tachOut.textColor = UIColor.white
             } else {
-                tachOut.text = "Out..."
+                tachOut.text = "Add Time..."
                 tachOut.textColor = UIColor.lightGray
             }
             
@@ -89,7 +89,7 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
                 oilStart.text = selectedFlight?.oilStart
                 oilStart.textColor = UIColor.white
             } else {
-                oilStart.text = "Start..."
+                oilStart.text = "Add Oil..."
                 oilStart.textColor = UIColor.lightGray
             }
             
@@ -97,7 +97,7 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
                 oilAdded.text = selectedFlight?.oilAdded
                 oilAdded.textColor = UIColor.white
             } else {
-                oilAdded.text = "Added..."
+                oilAdded.text = "Add Oil..."
                 oilAdded.textColor = UIColor.lightGray
             }
             
@@ -105,7 +105,7 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
                 fuelStart.text = selectedFlight?.fuelStart
                 fuelStart.textColor = UIColor.white
             } else {
-                fuelStart.text = "Start..."
+                fuelStart.text = "Add Fuel..."
                 fuelStart.textColor = UIColor.lightGray
             }
             
@@ -113,7 +113,7 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
                 fuelAdded.text = selectedFlight?.fuelAdded
                 fuelAdded.textColor = UIColor.white
             } else {
-                fuelAdded.text = "Added..."
+                fuelAdded.text = "Add Fuel..."
                 fuelAdded.textColor = UIColor.lightGray
             }
             
@@ -254,6 +254,7 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
                 textView.textColor = UIColor.white
             }
             
+            
         }
         
         if textView == hobbsOut {
@@ -330,8 +331,11 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
         if textView == textViewNotes {
             
             if textView.text.isEmpty {
-                textView.text = "Notes..."
+                textView.text = "Add Notes..."
                 textView.textColor = UIColor.lightGray
+                selectedFlight?.setValue(nil, forKey: "notes")
+                self.saveFlight()
+            
             }
             else {
                selectedFlight?.setValue(textViewNotes.text, forKey: "notes")
@@ -343,10 +347,14 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
         if textView == hobbsIn {
             
             if textView.text.isEmpty {
-                textView.text = "In..."
+                textView.text = "Add Time..."
                 textView.textColor = UIColor.lightGray
+                selectedFlight?.setValue(nil, forKey: "hobbsIn")
+                self.saveFlight()
+              
             }
             else {
+                
                 selectedFlight?.setValue(hobbsIn.text, forKey: "hobbsIn")
                 self.saveFlight()
             }
@@ -356,8 +364,10 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
         if textView == hobbsOut {
             
             if textView.text.isEmpty {
-                textView.text = "Out..."
+                textView.text = "Add Time..."
                 textView.textColor = UIColor.lightGray
+                selectedFlight?.setValue(nil, forKey: "hobbsOut")
+                self.saveFlight()
             }
             else {
                 selectedFlight?.setValue(hobbsOut.text, forKey: "hobbsOut")
@@ -369,8 +379,10 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
         if textView == tachIn {
             
             if textView.text.isEmpty {
-                textView.text = "In..."
+                textView.text = "Add Time..."
                 textView.textColor = UIColor.lightGray
+                selectedFlight?.setValue(nil, forKey: "tachIn")
+                self.saveFlight()
             }
             else {
                 selectedFlight?.setValue(tachIn.text, forKey: "tachIn")
@@ -382,8 +394,10 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
         if textView == tachOut {
             
             if textView.text.isEmpty {
-                textView.text = "Out..."
+                textView.text = "Add Time..."
                 textView.textColor = UIColor.lightGray
+                selectedFlight?.setValue(nil, forKey: "tachOut")
+                self.saveFlight()
             }
             else {
                 selectedFlight?.setValue(tachOut.text, forKey: "tachOut")
@@ -395,8 +409,10 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
         if textView == oilStart {
             
             if textView.text.isEmpty {
-                textView.text = "Start..."
+                textView.text = "Add Oil..."
                 textView.textColor = UIColor.lightGray
+                selectedFlight?.setValue(nil, forKey: "oilStart")
+                self.saveFlight()
             }
             else {
                 selectedFlight?.setValue(oilStart.text, forKey: "oilStart")
@@ -408,8 +424,10 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
         if textView == oilAdded {
             
             if textView.text.isEmpty {
-                textView.text = "Added..."
+                textView.text = "Add Oil..."
                 textView.textColor = UIColor.lightGray
+                selectedFlight?.setValue(nil, forKey: "oilAdded")
+                self.saveFlight()
             }
             else {
                 selectedFlight?.setValue(oilAdded.text, forKey: "oilAdded")
@@ -421,8 +439,10 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
         if textView == fuelStart {
             
             if textView.text.isEmpty {
-                textView.text = "Start..."
+                textView.text = "Add Fuel..."
                 textView.textColor = UIColor.lightGray
+                selectedFlight?.setValue(nil, forKey: "fuelStart")
+                self.saveFlight()
             }
             else {
                 selectedFlight?.setValue(fuelStart.text, forKey: "fuelStart")
@@ -434,8 +454,10 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
         if textView == fuelAdded {
             
             if textView.text.isEmpty {
-                textView.text = "Added..."
+                textView.text = "Add Fuel..."
                 textView.textColor = UIColor.lightGray
+                selectedFlight?.setValue(nil, forKey: "fuelAdded")
+                self.saveFlight()
             }
             else {
                 selectedFlight?.setValue(fuelAdded.text, forKey: "fuelAdded")
@@ -450,28 +472,72 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
     
     
     
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.text.append("<br>")
+        }
+       return true
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        if segue.identifier == "goToPDF" {
+            
+            let destinationVC = segue.destination as! previewPDF
+            
+            
+           
+                destinationVC.selectedFlight = selectedFlight
+            
+        }
+    }
+    
     
     //MARK: action sheet alert
     
     
     @IBAction func actionSheetAlert(_ sender: Any) {
         
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        UIVisualEffectView.appearance(whenContainedInInstancesOf: [UIAlertController.classForCoder() as! UIAppearanceContainer.Type]).effect = UIBlurEffect(style: .dark)
-        actionSheet.view.tintColor = UIColor.white
-        let savePDF = UIAlertAction(title: "Save PDF", style: .default) { (action) in
-            
-        }
-        let emailPDF = UIAlertAction(title: "Email PDF", style: .default) { (action) in
-            
-        }
-        let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yy"
+        let dateString = formatter.string(from: ((selectedFlight?.flightDate)!))
         
-        actionSheet.addAction(cancel)
-        actionSheet.addAction(savePDF)
-        actionSheet.addAction(emailPDF)
+        var html = "<h1>Havens Aero</h1><b>\(selectedFlight?.customerName ?? "")</b> <br><b>\(selectedFlight?.tailNumber ?? "")</b><br><b>\(dateString)</b><br><br><br><b>Time</b><p>Hobbs In: <b>\(selectedFlight?.hobbsIn ?? "")</b></p><p>Hobbs Out: <b>\(selectedFlight?.hobbsOut ?? "")</b></p><p>Tach In: <b>\(selectedFlight?.tachIn ?? "")</b></p><p>Tach Out: <b>\(selectedFlight?.tachOut ?? "")</b></p><br><b>Fuel Levels</b><p>Oil Start: <b>\(selectedFlight?.oilStart ?? "")</b></p><p>Oil Added: <b>\(selectedFlight?.oilAdded ?? "")</b></p><p>Fuel Start: <b>\(selectedFlight?.fuelStart ?? "")</b></p><p>Fuel Added: <b>\(selectedFlight?.fuelAdded ?? "")</b></p><br><b>Notes</b><br><br><b>\(selectedFlight?.notes ?? "")</b>"
+        let fmt = UIMarkupTextPrintFormatter(markupText: html)
         
-        present(actionSheet, animated: true, completion: nil)
+        
+        let render = UIPrintPageRenderer()
+        render.addPrintFormatter(fmt, startingAtPageAt: 0)
+        
+        
+        let page = CGRect(x: 0, y: 0, width: 595.2, height: 841.8) // A4, 72 dpi
+        render.setValue(page, forKey: "paperRect")
+        render.setValue(page, forKey: "printableRect")
+        
+         let pdfData = NSMutableData()
+        
+        UIGraphicsBeginPDFContextToData(pdfData, .zero, nil)
+        
+        for i in 0..<render.numberOfPages {
+            UIGraphicsBeginPDFPage();
+            render.drawPage(at: i, in: UIGraphicsGetPDFContextBounds())
+        }
+        
+        UIGraphicsEndPDFContext();
+        
+        
+        guard let outputURL = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("output").appendingPathExtension("pdf")
+            else { fatalError("Destination URL not created") }
+        
+        pdfData.write(to: outputURL, atomically: true)
+        print("open \(outputURL.path)")
+        
+       // webView.loadHTMLString(html, baseURL: outputURL)
+        let activityController = UIActivityViewController(activityItems: [pdfData], applicationActivities: nil)
+        self.present(activityController, animated: true, completion: nil)
+       
+        
     }
     
     

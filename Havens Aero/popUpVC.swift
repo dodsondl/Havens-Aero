@@ -20,6 +20,7 @@ class popUpVC: UIViewController {
     @IBOutlet weak var popUpButton: UIButton!
     @IBOutlet weak var flightDateTextField: UITextField!
     @IBOutlet weak var tailNumberTextField: UITextField!
+    @IBOutlet weak var customerNameTextField: UITextField!
     var datePicker = UIDatePicker()
     var flightArray = [Flight]()
      let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -49,6 +50,7 @@ class popUpVC: UIViewController {
         let newFlight = Flight(context: context)
         newFlight.tailNumber = tailNumberTextField.text!
         newFlight.flightDate = datePicker.date
+        newFlight.customerName = customerNameTextField.text!
         self.flightArray.append(newFlight)
         self.saveFlight()
         self.dismiss(animated: true) {

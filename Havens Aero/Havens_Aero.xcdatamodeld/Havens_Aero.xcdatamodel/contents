@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Flight" representedClassName=".Flight" syncable="YES" codeGenerationType="class">
+        <attribute name="customerName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="flightDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="fuelAdded" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fuelStart" optional="YES" attributeType="String" syncable="YES"/>
@@ -15,6 +16,6 @@
         <attribute name="tailNumber" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Flight" positionX="-419.796875" positionY="14.9375" width="128" height="223"/>
+        <element name="Flight" positionX="-419.796875" positionY="14.9375" width="128" height="240"/>
     </elements>
 </model>
