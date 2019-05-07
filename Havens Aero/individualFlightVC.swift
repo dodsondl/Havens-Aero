@@ -48,99 +48,35 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
            self.dateLabel.text = dateString
             self.customerNameLabel.text = selectedFlight?.customerName
             
-            if selectedFlight?.notes != nil {
-                textViewNotes.text = selectedFlight?.notes
-                textViewNotes.textColor = UIColor.white
-            } else {
-                textViewNotes.text = "Add Notes..."
-                textViewNotes.textColor = UIColor.lightGray
-            }
             
-            if selectedFlight?.hobbsIn != nil {
-                hobbsIn.text = selectedFlight?.hobbsIn
-                hobbsIn.textColor = UIColor.white
-            } else {
-                hobbsIn.text = "Add Time..."
-                hobbsIn.textColor = UIColor.lightGray
-            }
             
-            if selectedFlight?.hobbsOut != nil {
-                hobbsOut.text = selectedFlight?.hobbsOut
-                hobbsOut.textColor = UIColor.white
-            } else {
-                hobbsOut.text = "Add Time..."
-                hobbsOut.textColor = UIColor.lightGray
-            }
-            
-            if selectedFlight?.tachIn != nil {
-                tachIn.text = selectedFlight?.tachIn
-                tachIn.textColor = UIColor.white
-            } else {
-                tachIn.text = "Add Time..."
-                tachIn.textColor = UIColor.lightGray
-            }
-            
-            if selectedFlight?.tachOut != nil {
-                tachOut.text = selectedFlight?.tachOut
-                tachOut.textColor = UIColor.white
-            } else {
-                tachOut.text = "Add Time..."
-                tachOut.textColor = UIColor.lightGray
-            }
-            
-            if selectedFlight?.oilStart != nil {
-                oilStart.text = selectedFlight?.oilStart
-                oilStart.textColor = UIColor.white
-            } else {
-                oilStart.text = "Add Oil..."
-                oilStart.textColor = UIColor.lightGray
-            }
-            
-            if selectedFlight?.oilAdded != nil {
-                oilAdded.text = selectedFlight?.oilAdded
-                oilAdded.textColor = UIColor.white
-            } else {
-                oilAdded.text = "Add Oil..."
-                oilAdded.textColor = UIColor.lightGray
-            }
-            
-            if selectedFlight?.fuelStart != nil {
-                fuelStart.text = selectedFlight?.fuelStart
-                fuelStart.textColor = UIColor.white
-            } else {
-                fuelStart.text = "Add Fuel..."
-                fuelStart.textColor = UIColor.lightGray
-            }
-            
-            if selectedFlight?.fuelAdded != nil {
-                fuelAdded.text = selectedFlight?.fuelAdded
-                fuelAdded.textColor = UIColor.white
-            } else {
-                fuelAdded.text = "Add Fuel..."
-                fuelAdded.textColor = UIColor.lightGray
-            }
-            
-            if selectedFlight?.depart != nil {
-                departView.text = selectedFlight?.depart
-                departView.textColor = UIColor.white
-            } else {
-                departView.text = "Add city..."
-                departView.textColor = UIColor.lightGray
-            }
-            
-            if selectedFlight?.arrive != nil {
-                arriveView.text = selectedFlight?.arrive
-                arriveView.textColor = UIColor.white
-            } else {
-                arriveView.text = "Add city..."
-                arriveView.textColor = UIColor.lightGray
-            }
-            
-          
-            
+            introFlight(textViewNotes, selectFlight: (selectedFlight?.notes)!, notes: "Add Notes...")
+            introFlight(hobbsIn, selectFlight: (selectedFlight?.hobbsIn)!, notes: "Add Time...")
+            introFlight(hobbsOut, selectFlight: (selectedFlight?.hobbsOut)!, notes: "Add Time...")
+            introFlight(tachIn, selectFlight: (selectedFlight?.tachIn)!, notes: "Add Time...")
+            introFlight(tachOut, selectFlight: (selectedFlight?.tachOut)!, notes: "Add Time...")
+            introFlight(oilStart, selectFlight: (selectedFlight?.oilStart)!, notes: "Add Oil...")
+            introFlight(oilAdded, selectFlight: (selectedFlight?.oilAdded)!, notes: "Add Oil...")
+            introFlight(fuelStart, selectFlight: (selectedFlight?.fuelStart)!, notes: "Add Fuel...")
+            introFlight(fuelAdded, selectFlight: (selectedFlight?.fuelAdded)!, notes: "Add Fuel...")
+            introFlight(departView, selectFlight: (selectedFlight?.depart)!, notes: "Depart...")
+            introFlight(arriveView, selectFlight: (selectedFlight?.arrive)!, notes: "Arrive...")
             
          
         }
+    }
+    
+    func introFlight(_ textView: UITextView, selectFlight: String, notes: String) {
+        
+        if selectFlight != nil {
+            textView.text = selectFlight
+            textView.textColor = UIColor.white
+        }
+        else {
+            textView.text = notes
+            textView.textColor = UIColor.lightGray
+        }
+        
     }
    
     override func viewDidDisappear(_ animated: Bool) {
