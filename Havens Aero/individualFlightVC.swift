@@ -20,8 +20,6 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
 
     
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var stepperNumber: UILabel!
-    @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var textViewNotes: UITextView!
     @IBOutlet weak var hobbsIn: UITextView!
     @IBOutlet weak var hobbsOut: UITextView!
@@ -31,6 +29,10 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
     @IBOutlet weak var oilAdded: UITextView!
     @IBOutlet weak var fuelStart: UITextView!
     @IBOutlet weak var fuelAdded: UITextView!
+    @IBOutlet weak var customerNameLabel: UILabel!
+    @IBOutlet weak var departView: UITextView!
+    @IBOutlet weak var arriveView: UITextView!
+    
     
   
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -44,6 +46,7 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
             formatter.dateFormat = "MM/dd/yy"
            let dateString = formatter.string(from: ((selectedFlight?.flightDate)!))
            self.dateLabel.text = dateString
+            self.customerNameLabel.text = selectedFlight?.customerName
             
             if selectedFlight?.notes != nil {
                 textViewNotes.text = selectedFlight?.notes
@@ -117,11 +120,23 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
                 fuelAdded.textColor = UIColor.lightGray
             }
             
-            if selectedFlight?.stepperNumber != nil {
-                stepperNumber.text = selectedFlight?.stepperNumber
+            if selectedFlight?.depart != nil {
+                departView.text = selectedFlight?.depart
+                departView.textColor = UIColor.white
             } else {
-              stepperNumber.text = "0"
+                departView.text = "Add city..."
+                departView.textColor = UIColor.lightGray
             }
+            
+            if selectedFlight?.arrive != nil {
+                arriveView.text = selectedFlight?.arrive
+                arriveView.textColor = UIColor.white
+            } else {
+                arriveView.text = "Add city..."
+                arriveView.textColor = UIColor.lightGray
+            }
+            
+          
             
             
          
@@ -135,13 +150,31 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
     }
     
     
+    override func viewDidLayoutSubviews() {
+        
+       // textViewNotes.centerVertically()
+        hobbsIn.centerVertically()
+        hobbsOut.centerVertically()
+        tachIn.centerVertically()
+        tachOut.centerVertically()
+        oilStart.centerVertically()
+        oilAdded.centerVertically()
+        fuelStart.centerVertically()
+        fuelAdded.centerVertically()
+        departView.centerVertically()
+        arriveView.centerVertically()
+
+        
+    }
+    
+    
     
     //MARK: Viewdidload
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        stepper.maximumValue = 9
+       
        tableView.keyboardDismissMode = .onDrag
     
     txtViewDesign()
@@ -155,8 +188,6 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
     
     func txtViewDesign() {
         
-        
-      
         
         textViewNotes.text = "Notes..."
         textViewNotes.textColor = UIColor.lightGray
@@ -185,32 +216,18 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
         fuelAdded.text = "Added..."
         fuelAdded.textColor = UIColor.lightGray
         fuelAdded.delegate = self
+        departView.text = "Add city..."
+        departView.textColor = UIColor.lightGray
+        departView.delegate = self
+        arriveView.text = "Add city..."
+        arriveView.textColor = UIColor.lightGray
+        arriveView.delegate = self
  
         
     }
     
+
     
-    
-    /*
-    
-    //MARK: load Flights
-    
-    func loadFlights(with request: NSFetchRequest<Info> = Info.fetchRequest()) {
-        
-        let predicate = NSPredicate(format: "parentCategory.tailNumber MATCHES %@", selectedFlight!.tailNumber!)
-        
-        request.predicate = predicate
-        
-        do {
-            infoArray = try context.fetch(request)
-        } catch {
-            print ("error fetching context")
-        }
-        
-        tableView.reloadData()
-    }
-    
-    */
     
     
     //MARK: save flight
@@ -225,259 +242,128 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
         }
     }
 
-    @IBAction func stepperValueChanged(_ sender: UIStepper) {
+    
+
+    
+    //text design for textViewDidBeginEditing
+    
+    func textDesign(_ textView: UITextView) {
         
-        stepperNumber.text = Int(sender.value).description
-        selectedFlight?.setValue(Int(sender.value).description, forKey: "stepperNumber")
-        saveFlight()
-        
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.white
+        }
     }
     
     
     
+    
+    //Call Viewdidbegin editing
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         
         if textView == textViewNotes {
-            
-            if textView.textColor == UIColor.lightGray {
-                textView.text = nil
-                textView.textColor = UIColor.white
-            }
-            
+        textDesign(textViewNotes)
         }
-        
         if textView == hobbsIn {
-            
-            if textView.textColor == UIColor.lightGray {
-                textView.text = nil
-                textView.textColor = UIColor.white
-            }
-            
-            
+        textDesign(hobbsIn)
         }
-        
         if textView == hobbsOut {
-            
-            if textView.textColor == UIColor.lightGray {
-                textView.text = nil
-                textView.textColor = UIColor.white
-            }
-            
+        textDesign(hobbsOut)
         }
-        
         if textView == tachIn {
-            
-            if textView.textColor == UIColor.lightGray {
-                textView.text = nil
-                textView.textColor = UIColor.white
-            }
-            
+        textDesign(tachIn)
         }
-        
         if textView == tachOut {
-            
-            if textView.textColor == UIColor.lightGray {
-                textView.text = nil
-                textView.textColor = UIColor.white
-            }
-            
+        textDesign(tachOut)
         }
-        
         if textView == oilStart {
-            
-            if textView.textColor == UIColor.lightGray {
-                textView.text = nil
-                textView.textColor = UIColor.white
-            }
-            
+        textDesign(oilStart)
         }
-        
         if textView == oilAdded {
-            
-            if textView.textColor == UIColor.lightGray {
-                textView.text = nil
-                textView.textColor = UIColor.white
-            }
-            
+        textDesign(oilAdded)
         }
-        
         if textView == fuelStart {
-            
-            if textView.textColor == UIColor.lightGray {
-                textView.text = nil
-                textView.textColor = UIColor.white
-            }
-            
+        textDesign(fuelStart)
+        }
+        if textView == fuelAdded {
+        textDesign(fuelAdded)
+        }
+        if textView == departView {
+        textDesign(departView)
+        }
+        if textView == arriveView {
+        textDesign(arriveView)
         }
         
-        if textView == fuelAdded {
-            
-            if textView.textColor == UIColor.lightGray {
-                textView.text = nil
-                textView.textColor = UIColor.white
-            }
+       
+    }
+    
+    //view did end editing
+    
+    func endEdit(_ textView: UITextView, notes: String, forKey: String) {
+        
+        if textView.text.isEmpty {
+            textView.text = notes
+            textView.textColor = UIColor.lightGray
+            selectedFlight?.setValue(nil, forKey: forKey)
+            self.saveFlight()
             
         }
-       
+        else {
+            selectedFlight?.setValue(textViewNotes.text, forKey: forKey)
+            self.saveFlight()
+        }
+        
     }
     
     
     
     
+    // Call View Did end editing
     
     func textViewDidEndEditing(_ textView: UITextView) {
         
+        
         if textView == textViewNotes {
-            
-            if textView.text.isEmpty {
-                textView.text = "Add Notes..."
-                textView.textColor = UIColor.lightGray
-                selectedFlight?.setValue(nil, forKey: "notes")
-                self.saveFlight()
-            
-            }
-            else {
-               selectedFlight?.setValue(textViewNotes.text, forKey: "notes")
-                self.saveFlight()
-            }
-            
+        endEdit(textView, notes: "Add Notes...", forKey: "notes")
         }
-        
         if textView == hobbsIn {
-            
-            if textView.text.isEmpty {
-                textView.text = "Add Time..."
-                textView.textColor = UIColor.lightGray
-                selectedFlight?.setValue(nil, forKey: "hobbsIn")
-                self.saveFlight()
-              
-            }
-            else {
-                
-                selectedFlight?.setValue(hobbsIn.text, forKey: "hobbsIn")
-                self.saveFlight()
-            }
-            
+        endEdit(textView, notes: "Add Time...", forKey: "hobbsIn")
         }
-        
         if textView == hobbsOut {
-            
-            if textView.text.isEmpty {
-                textView.text = "Add Time..."
-                textView.textColor = UIColor.lightGray
-                selectedFlight?.setValue(nil, forKey: "hobbsOut")
-                self.saveFlight()
-            }
-            else {
-                selectedFlight?.setValue(hobbsOut.text, forKey: "hobbsOut")
-                self.saveFlight()
-            }
-            
+        endEdit(textView, notes: "Add Time...", forKey: "hobbsOut")
         }
-        
         if textView == tachIn {
-            
-            if textView.text.isEmpty {
-                textView.text = "Add Time..."
-                textView.textColor = UIColor.lightGray
-                selectedFlight?.setValue(nil, forKey: "tachIn")
-                self.saveFlight()
-            }
-            else {
-                selectedFlight?.setValue(tachIn.text, forKey: "tachIn")
-                self.saveFlight()
-            }
-            
+        endEdit(textView, notes: "Add Time...", forKey: "tachIn")
         }
-        
         if textView == tachOut {
-            
-            if textView.text.isEmpty {
-                textView.text = "Add Time..."
-                textView.textColor = UIColor.lightGray
-                selectedFlight?.setValue(nil, forKey: "tachOut")
-                self.saveFlight()
-            }
-            else {
-                selectedFlight?.setValue(tachOut.text, forKey: "tachOut")
-                self.saveFlight()
-            }
-            
+        endEdit(textView, notes: "Add Time...", forKey: "tachOut")
         }
-        
         if textView == oilStart {
-            
-            if textView.text.isEmpty {
-                textView.text = "Add Oil..."
-                textView.textColor = UIColor.lightGray
-                selectedFlight?.setValue(nil, forKey: "oilStart")
-                self.saveFlight()
-            }
-            else {
-                selectedFlight?.setValue(oilStart.text, forKey: "oilStart")
-                self.saveFlight()
-            }
-            
+        endEdit(textView, notes: "Add Oil...", forKey: "oilStart")
         }
-        
         if textView == oilAdded {
-            
-            if textView.text.isEmpty {
-                textView.text = "Add Oil..."
-                textView.textColor = UIColor.lightGray
-                selectedFlight?.setValue(nil, forKey: "oilAdded")
-                self.saveFlight()
-            }
-            else {
-                selectedFlight?.setValue(oilAdded.text, forKey: "oilAdded")
-                self.saveFlight()
-            }
-            
+        endEdit(textView, notes: "Add Oil...", forKey: "oilAdded")
         }
-        
         if textView == fuelStart {
-            
-            if textView.text.isEmpty {
-                textView.text = "Add Fuel..."
-                textView.textColor = UIColor.lightGray
-                selectedFlight?.setValue(nil, forKey: "fuelStart")
-                self.saveFlight()
-            }
-            else {
-                selectedFlight?.setValue(fuelStart.text, forKey: "fuelStart")
-                self.saveFlight()
-            }
-            
+        endEdit(textView, notes: "Add Fuel...", forKey: "fuelStart")
         }
-        
         if textView == fuelAdded {
-            
-            if textView.text.isEmpty {
-                textView.text = "Add Fuel..."
-                textView.textColor = UIColor.lightGray
-                selectedFlight?.setValue(nil, forKey: "fuelAdded")
-                self.saveFlight()
-            }
-            else {
-                selectedFlight?.setValue(fuelAdded.text, forKey: "fuelAdded")
-                self.saveFlight()
-            }
-            
+        endEdit(textView, notes: "Add Fuel", forKey: "fuelAdded")
         }
-        
+        if textView == departView {
+        endEdit(textView, notes: "Add City...", forKey: "depart")
+        }
+        if textView == arriveView {
+        endEdit(textView, notes: "Add City...", forKey: "arrive")
+        }
        
       
     }
     
     
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if text == "\n" {
-            textView.text.append("<br>")
-        }
-       return true
-    }
+    //Segue to PDF
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -502,8 +388,10 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yy"
         let dateString = formatter.string(from: ((selectedFlight?.flightDate)!))
+        let not = selectedFlight?.notes ?? ""
+        let newNot = not.replacingOccurrences(of: "\n", with: "<br>")
         
-        var html = "<h1>Havens Aero</h1><b>\(selectedFlight?.customerName ?? "")</b> <br><b>\(selectedFlight?.tailNumber ?? "")</b><br><b>\(dateString)</b><br><br><br><b>Time</b><p>Hobbs In: <b>\(selectedFlight?.hobbsIn ?? "")</b></p><p>Hobbs Out: <b>\(selectedFlight?.hobbsOut ?? "")</b></p><p>Tach In: <b>\(selectedFlight?.tachIn ?? "")</b></p><p>Tach Out: <b>\(selectedFlight?.tachOut ?? "")</b></p><br><b>Fuel Levels</b><p>Oil Start: <b>\(selectedFlight?.oilStart ?? "")</b></p><p>Oil Added: <b>\(selectedFlight?.oilAdded ?? "")</b></p><p>Fuel Start: <b>\(selectedFlight?.fuelStart ?? "")</b></p><p>Fuel Added: <b>\(selectedFlight?.fuelAdded ?? "")</b></p><br><b>Notes</b><br><br><b>\(selectedFlight?.notes ?? "")</b>"
+        let html = "<html><head><style>.invoice-box {max-width: 800px;margin: auto; padding: 30px; border: 1px solid #eee; box-shadow: 0 0 10px rgba(0, 0, 0, .15); font-size: 16px; line-height: 24px; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #555;} h1 {font-size: 45px; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #555;} .invoice-box table {width: 100%; line-height: inherit; text-align: left;} .invoice-box table td {padding: 5px; vertical-align: top;} .invoice-box table tr td:nth-child(2) {text-align: right;} .invoice-box table tr.top table td {padding-bottom: 20px;} .invoice-box table tr.top table td.title {font-size: 45px; line-height: 45px; color: #333;} .invoice-box table tr.information table td {padding-bottom: 40px;}.invoice-box table tr.heading td {background: #eee;border-bottom: 1px solid #ddd;font-weight: bold;}.invoice-box table tr.details td {padding-bottom: 20px;}.invoice-box table tr.item td{border-bottom: 1px solid #eee;}.invoice-box table tr.item.last td {border-bottom: none;}.invoice-box table tr.total td:nth-child(2) {border-top: 2px solid #eee;font-weight: bold;}@media only screen and (max-width: 600px) {.invoice-box table tr.top table td {width: 100%; display: block;text-align: center;}.invoice-box table tr.information table td {width: 100%;display: block;text-align: center;}}.rtl {direction: rtl;font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;} .rtl table {text-align: right;}.rtl table tr td:nth-child(2) {text-align: left;}</style></head><body><div class='invoice-box'><table cellpadding='0' cellspacing='0'><tr class='top'><td colspan='2'><table><tr><td class='title'><h1>Havens Aero</h1></td><td></td></tr></table></td></tr><tr class='information'><td colspan='2'><table><tr><td>Havens Aero<br>401 Scarlet Oak Drive<br>Findlay, OH 45840</td><td>Customer Name: \(selectedFlight?.customerName ?? "")<br>Tail Number: \(selectedFlight?.tailNumber ?? "")<br>Flight Date: \(dateString)<br> Departure: \(selectedFlight?.depart ?? "")<br>Arrival: \(selectedFlight?.arrive ?? "")</td></tr></table></td></tr><tr class='heading'><td>Time</td><td></td></tr><tr class='item'><td>Hobbs In:</td><td>\(selectedFlight?.hobbsIn ?? "")</td></tr><tr class='item'><td>Hobbs Out:</td><td>\(selectedFlight?.hobbsOut ?? "")</td></tr><tr class='item'><td>Tach In:</td><td>\(selectedFlight?.tachIn ?? "")</td></tr><tr class='item'><td>Tach Out:</td><td>\(selectedFlight?.tachOut ?? "")</td></tr><tr class='heading'><td>Fuel Levels</td><td></td></tr><tr class='item'><td>Oil Start</td><td>\(selectedFlight?.oilStart ?? "") qts</td></tr><tr class='item'><td>Oil Added</td><td>\(selectedFlight?.oilAdded ?? "") qts</td></tr><tr class='item'><td>Fuel Start</td><td>\(selectedFlight?.fuelStart ?? "") GAL</td></tr><tr class='item'><td>Fuel Added</td><td>\(selectedFlight?.fuelAdded ?? "") GAL</td></tr><tr class='heading'><td>Notes</td><td></td></tr><tr class='item'><td>\(newNot)</td><td></td></tr></table></div></body></html>"
         let fmt = UIMarkupTextPrintFormatter(markupText: html)
         
         
@@ -511,7 +399,7 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
         render.addPrintFormatter(fmt, startingAtPageAt: 0)
         
         
-        let page = CGRect(x: 0, y: 0, width: 595.2, height: 841.8) // A4, 72 dpi
+        let page = CGRect(x: 0, y: 0, width: 595.2, height: 841.8) 
         render.setValue(page, forKey: "paperRect")
         render.setValue(page, forKey: "printableRect")
         
@@ -533,13 +421,30 @@ class individualFlightVC: UITableViewController, UITextViewDelegate {
         pdfData.write(to: outputURL, atomically: true)
         print("open \(outputURL.path)")
         
-       // webView.loadHTMLString(html, baseURL: outputURL)
+   
         let activityController = UIActivityViewController(activityItems: [pdfData], applicationActivities: nil)
         self.present(activityController, animated: true, completion: nil)
        
         
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
 
+
+}
+
+
+//Center the text in the middle of cell
+
+extension UITextView {
+    func centerVertically() {
+        let fittingSize = CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude)
+        let size = sizeThatFits(fittingSize)
+        let topOffset = (bounds.size.height - size.height * zoomScale) / 2
+        let positiveTopOffset = max(1, topOffset)
+        contentOffset.y = -positiveTopOffset
+    }
 }

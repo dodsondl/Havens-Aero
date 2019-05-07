@@ -14,7 +14,7 @@ class intialVC: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet weak var label: UILabel!
     
-    
+  
     //MARK: Variables
     
    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -31,12 +31,12 @@ class intialVC: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleModalDismissed), name: NSNotification.Name(rawValue: "modalIsDimissed"), object: nil)
-        loadFlights()
+        newLoad()
+        //loadFlights()
         searchBarColor()
         
         
       self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        
         
         
     }
@@ -48,7 +48,8 @@ class intialVC: UITableViewController, UISearchBarDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
-        loadFlights()
+        newLoad()
+        //loadFlights()
     }
     
     
@@ -57,7 +58,9 @@ class intialVC: UITableViewController, UISearchBarDelegate {
     //MARK: objc to relaod data
     
     @objc func handleModalDismissed() {
-        loadFlights()
+        newLoad()
+        
+        //loadFlights()
         print("this should print something")
     }
     
@@ -107,6 +110,8 @@ class intialVC: UITableViewController, UISearchBarDelegate {
     }
     
     
+    
+    
     //MARK: delete trip
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -124,7 +129,7 @@ class intialVC: UITableViewController, UISearchBarDelegate {
             completion(true)
            
         }
-       // action.image = UIImage(named: "trashCan")
+      
         action.backgroundColor = .red
         self.saveFlight()
      
@@ -144,7 +149,7 @@ class intialVC: UITableViewController, UISearchBarDelegate {
         
         
         performSegue(withIdentifier: "goToFlight", sender: self)
-        //print(flightArray[indexPath.row])
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -172,13 +177,26 @@ class intialVC: UITableViewController, UISearchBarDelegate {
        
     }
     
-  
+    
+    
+    //Reload Flights
+    
+    func newLoad() {
+        
+        let request = NSFetchRequest<Flight>(entityName: "Flight")
+        let sort = NSSortDescriptor(key: #keyPath(Flight.flightDate), ascending: false)
+        request.sortDescriptors = [sort]
+        
+        loadFlights(with: request)
+        
+    }
    
     
     
     //MARK: load Flights
 
     func loadFlights(with request: NSFetchRequest<Flight> = Flight.fetchRequest()) {
+        
         
         do {
         flightArray = try context.fetch(request)
@@ -224,7 +242,8 @@ class intialVC: UITableViewController, UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
-            loadFlights()
+            newLoad()
+            //loadFlights()
             DispatchQueue.main.async {
                  searchBar.resignFirstResponder()
             }
@@ -239,7 +258,16 @@ class intialVC: UITableViewController, UISearchBarDelegate {
     }
     
     
-   
+    
+    //MARK: quote button
+    
+    @IBAction func quoteButton(_ sender: Any) {
+        
+        guard let url = URL(string: "https://docs.google.com/spreadsheets/d/1-U5OWlOAzBBya1_mME5Ch3IJW1Zq0ZTHowpO3IDZGKw/edit#gid=1720220633") else { return }
+        UIApplication.shared.open(url)
+        
+    }
+    
 
 
 }

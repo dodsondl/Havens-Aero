@@ -8,8 +8,6 @@
 
 import UIKit
 import MessageUI
-import PSPDFKit
-import PSPDFKitUI
 
 
 
